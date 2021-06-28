@@ -7,10 +7,11 @@ use App\Models\Post;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'age'
     ];
 
     /**
@@ -45,5 +46,10 @@ class User extends Authenticatable
 
     public function comments(){
         return $this->hasMany(Comment::class , 'user_id','id');
+    }
+
+
+    public function phone(){
+        return $this->hasOne('App\Models\Phone','user_id');
     }
 }

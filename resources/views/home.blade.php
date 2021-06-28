@@ -19,7 +19,7 @@
                     <div class="alert alert-success">
                     {{ session()->get('sussess_msg') }}
                     </div>
-             @endif
+                    @endif
 
                     @foreach ($posts as  $post)
                         <div class="card-body">
@@ -74,6 +74,42 @@
                     @endif
 
                 </div>
+
+                <div>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">details</th>
+                            <th scope="col">Operations</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($offer as $offer)
+                          <tr>
+                            <th scope="row">{{ $offer->id }}</th>
+                            <td>{{ $offer->name }}</td>
+                            <td>{{ $offer->price }}</td>
+                            <td>{{ $offer->details }}</td>
+                            <td><a href="{{ route('edit-offer',['id' =>  $offer->id ]) }}" class="btn btn-success">Edit</a></td>
+                            <td><a href="{{ route('delete-offer',['id' =>  $offer->id ]) }}" class="btn btn-success">Delete</a></td>
+                          </tr>
+
+                          @endforeach
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+                {{-- {!! $offer['index']->links() !!} --}}
+
+
+
             </div>
         </div>
     </div>
